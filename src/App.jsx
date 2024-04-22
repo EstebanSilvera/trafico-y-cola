@@ -71,13 +71,14 @@ function App() {
           return alert("Llene los campos requeridos")
         }
       default:
-        console.log("error");
+        alert("Escoja alguna de las opciones")
         break;
     }
   };
 
   return (
     <div className="container2" style={{ backgroundImage: `url(${foto})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }} >
+
       <div className="informacion text-center backdrop-blur">
         <button
           onClick={() => {
@@ -268,8 +269,10 @@ function Mm1(props) {
   };
 
   const [respuesta, setRespuesta] = useState();
+  const [loading, setLoading] = useState(false);
 
   const calcula = () => {
+    setLoading(true)
     fetch("https://teoria-trafico-colas-2.onrender.com/mm1-analysis", {
       method: "POST",
       headers: {
@@ -285,10 +288,12 @@ function Mm1(props) {
       })
       .then((data) => {
         setRespuesta(data.data[0]);
+        setLoading(false)
       })
       .catch((error) => {
         console.error("Error al enviar la solicitud:", error);
       });
+
   };
 
   return (
@@ -312,27 +317,75 @@ function Mm1(props) {
           <div className="grid grid-cols-2 gap-4">
             <div className="border p-3 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Longitud promedio de la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.lq}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.lq}</p>
+              }
             </div>
             <div className="border p-3 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Longitud promedio del sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.ls}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.ls}</p>
+              }
             </div>
             <div className="border p-3 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.p}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.p}</p>
+              }
             </div>
             <div className="border p-3 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.p0}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.p0}</p>
+              }
             </div>
             <div className="border p-4 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.wq}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.wq}</p>
+              }
             </div>
             <div className="border p-4 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.ws}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.ws}</p>
+              }
             </div>
           </div>
         </div>
@@ -351,8 +404,11 @@ function Mms(props) {
   };
 
   const [respuesta, setRespuesta] = useState();
+  const [loading, setLoading] = useState(false);
+
 
   const calcula = () => {
+    setLoading(true)
     fetch("https://teoria-trafico-colas-2.onrender.com/mms-analysis", {
       method: "POST",
       headers: {
@@ -368,6 +424,7 @@ function Mms(props) {
       })
       .then((data) => {
         setRespuesta(data.data[0]);
+        setLoading(false)
       })
       .catch((error) => {
         console.error("Error al enviar la solicitud:", error);
@@ -395,27 +452,80 @@ function Mms(props) {
           <div className="grid grid-cols-2 gap-4">
             <div className="border p-3 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Longitud promedio de la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.lq}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.lq}</p>
+              }
             </div>
             <div className="border p-3 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Longitud promedio del sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.ls}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.ls}</p>
+              }
+
             </div>
             <div className="border p-3 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.p}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.p}</p>
+              }
+
             </div>
             <div className="border p-3 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.p0}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.p0}</p>
+              }
+
             </div>
             <div className="border p-4 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.wq}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.wq}</p>
+              }
+
             </div>
             <div className="border p-4 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.ws}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.ws}</p>
+              }
+
             </div>
           </div>
         </div>
@@ -436,8 +546,10 @@ function MmsCostos(props) {
   };
 
   const [respuesta, setRespuesta] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const calcula = () => {
+    setLoading(true)
     fetch("https://teoria-trafico-colas-2.onrender.com/mms-costos-analysis", {
       method: "POST",
       headers: {
@@ -453,6 +565,7 @@ function MmsCostos(props) {
       })
       .then((data) => {
         setRespuesta(data.data[0]);
+        setLoading(false)
       })
       .catch((error) => {
         console.error("Error al enviar la solicitud:", error);
@@ -529,6 +642,7 @@ function MmsCostos(props) {
                 </tr>
               </thead>
               <tbody>
+
                 {respuesta.map((item, index) => (
                   <tr key={index} className={getColorClass(index)}>
                     <td className="border px-4 py-2">{index}</td>
@@ -547,6 +661,16 @@ function MmsCostos(props) {
           </div>
         </div>
         <hr /><hr /><hr />
+
+        {
+          loading
+            ?
+            <div className="flex justify-center items-center mt-7">
+              <div className="border-t-4 border-blue-500 rounded-full animate-spin h-64 w-64"></div>
+            </div>
+            :
+            <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.ls}</p>
+        }
 
         {respuesta.map((item, index) => (
           <>
@@ -608,8 +732,10 @@ function Mm1k(props) {
   };
 
   const [respuesta, setRespuesta] = useState();
+  const [loading, setLoading] = useState();
 
   const calcula = () => {
+    setLoading(true)
     fetch("https://teoria-trafico-colas-2.onrender.com/mm1k-analysis", {
       method: "POST",
       headers: {
@@ -625,6 +751,7 @@ function Mm1k(props) {
       })
       .then((data) => {
         setRespuesta(data.data[0]);
+        setLoading(false)
       })
       .catch((error) => {
         console.error("Error al enviar la solicitud:", error);
@@ -652,31 +779,88 @@ function Mm1k(props) {
           <div className="grid grid-cols-2 gap-4">
             <div className="border p-3 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Longitud promedio de la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.l}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center mt-7">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.l}</p>
+              }
             </div>
             <div className="border p-3 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Longitud promedio exclusiva de la cola de espera:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.lq}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center mt-7">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.lq}</p>
+              }
             </div>
             <div className="border p-3 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.p}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center mt-7">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.p}</p>
+              }
             </div>
             <div className="border p-3 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.p0}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center mt-7">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.p0}</p>
+              }
             </div>
             <div className="border p-4 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.wq}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center mt-7">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.wq}</p>
+              }
             </div>
             <div className="border p-4 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.w}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center mt-7">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.w}</p>
+              }
             </div>
             <div className="border p-4 rounded-lg shadow-xl">
               <h4 className="text-lg text-center font-semibold">Lamnda prima:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.lambda_prima}</p>
+              {
+                loading
+                  ?
+                  <div className="flex justify-center items-center mt-7">
+                    <div className="border-t-4 border-blue-500 rounded-full animate-spin h-12 w-12"></div>
+                  </div>
+                  :
+                  <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta?.lambda_prima}</p>
+              }
+
             </div>
           </div>
         </div>
