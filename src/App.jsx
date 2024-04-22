@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal } from "react-bootstrap";
+import foto from "./assets/estadistica2.jpg"
 
 function App() {
   const [teoriaColas, setTeoriaColas] = useState(false);
@@ -30,13 +31,45 @@ function App() {
   const verificar = () => {
     switch (true) {
       case teoriaColas && !teoriaColas2 && !teoriaColas3 && !teoriaColas4:
-        return setModalShow(true);
+        if (lamb && miu) {
+          if (lamb != 0 && miu != 0) {
+            return setModalShow(true);
+          } else {
+            return alert("Agregue un numero diferente a 0")
+          }
+        } else {
+          return alert("Llene los campos requeridos")
+        }
       case teoriaColas && teoriaColas2 && !teoriaColas3 && !teoriaColas4:
-        return setModalShow2(true);
+        if (lamb && miu && servidor) {
+          if (lamb != 0 && miu != 0 && servidor != 0) {
+            return setModalShow2(true);
+          } else {
+            return alert("Agregue un numero diferente a 0")
+          }
+        } else {
+          return alert("Llene los campos requeridos")
+        }
       case teoriaColas && teoriaColas2 && teoriaColas3 && !teoriaColas4:
-        return setModalShow3(true);
+        if (lamb && miu && servidor && costoEspera && costoServidor) {
+          if (lamb != 0 && miu != 0 && servidor != 0 && costoEspera != 0 && costoServidor != 0) {
+            return setModalShow3(true);
+          } else {
+            return alert("Agregue un numero diferente a 0")
+          }
+        } else {
+          return alert("Llene los campos requeridos")
+        }
       case teoriaColas && !teoriaColas2 && !teoriaColas3 && teoriaColas4:
-        return setModalShow4(true);
+        if (lamb && miu && colaTamano) {
+          if (lamb != 0 && miu != 0 && colaTamano != 0) {
+            return setModalShow4(true);
+          } else {
+            return alert("Agregue un numero diferente a 0")
+          }
+        } else {
+          return alert("Llene los campos requeridos")
+        }
       default:
         console.log("error");
         break;
@@ -44,8 +77,8 @@ function App() {
   };
 
   return (
-    <div className="container2">
-      <div className="informacion text-center">
+    <div className="container2" style={{ backgroundImage: `url(${foto})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }} >
+      <div className="informacion text-center backdrop-blur">
         <button
           onClick={() => {
             setTeoriaColas(true);
@@ -53,7 +86,7 @@ function App() {
             setTeoriaColas3(false);
             setTeoriaColas4(false);
           }}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-[20vh] rounded m-2"
+          className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 w-[20vh] rounded m-2 duration-700"
         >
           MM1
         </button>
@@ -65,7 +98,7 @@ function App() {
             setTeoriaColas3(false);
             setTeoriaColas4(false);
           }}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-[20vh] rounded m-2"
+          className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 w-[20vh] rounded m-2 duration-700"
         >
           MMS
         </button>
@@ -77,7 +110,7 @@ function App() {
             setTeoriaColas3(true);
             setTeoriaColas4(false);
           }}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-[20vh] rounded m-2"
+          className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 w-[20vh] rounded m-2 duration-700"
         >
           MMS costos
         </button>
@@ -89,7 +122,7 @@ function App() {
             setTeoriaColas3(false);
             setTeoriaColas4(true);
           }}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 w-[20vh] rounded m-2"
+          className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 w-[20vh] rounded m-2 duration-700"
         >
           MM1K
         </button>
@@ -104,7 +137,7 @@ function App() {
                 type="number"
                 id="first_name"
                 onChange={(e) => setLamb(e.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 shadow-inner text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Lamnda"
                 required
               />
@@ -115,7 +148,7 @@ function App() {
                 type="number"
                 id="first_name"
                 onChange={(e) => setMiu(e.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300  shadow-inner text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Miu"
                 required
               />
@@ -186,11 +219,11 @@ function App() {
             <div></div>
           )}
           <button
-            className="my-10 bg-blue-500 w-[40vh] h-10 rounded-full text-white font-bold"
+            className="my-10 bg-purple-500 hover:bg-purple-700 w-[40vh] h-10 rounded-full text-white font-bold  duration-700"
             type="submit"
             onClick={() => verificar()}
           >
-            Calcular
+            Abrir modal
           </button>
         </form>
       </div>
@@ -435,8 +468,26 @@ function MmsCostos(props) {
       return 'bg-blue-300'; // Azul para las dos siguientes filas
     } else if (index < 5) {
       return 'bg-yellow-300'; // Amarillo para las filas restantes
-    } else {
+    } else if (index < 6) {
       return 'bg-purple-300';
+    } else {
+      return 'bg-cyan-300';
+    }
+  };
+
+  const getColorModal = (index) => {
+    if (index < 2) {
+      return 'text-lg text-center font-semibold bg-green-300 rounded-full'; // Verde para las dos primeras filas
+    } else if (index < 3) {
+      return 'text-lg text-center font-semibold bg-red-300 rounded-full'; // Rojo para las dos siguientes filas
+    } else if (index < 4) {
+      return 'text-lg text-center font-semibold bg-blue-300 rounded-full'; // Azul para las dos siguientes filas
+    } else if (index < 5) {
+      return ' text-lg text-center font-semibold bg-yellow-300 rounded-full'; // Amarillo para las filas restantes
+    } else if (index < 6) {
+      return 'text-lg text-center font-semibold bg-purple-300 rounded-full';
+    } else {
+      return 'text-lg text-center font-semibold bg-cyan-300 rounded-full';
     }
   };
 
@@ -497,217 +548,52 @@ function MmsCostos(props) {
         </div>
         <hr /><hr /><hr />
 
-        <div className="container mx-auto my-3">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Longitud promedio de la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta[1]?.lq}</p>
+        {respuesta.map((item, index) => (
+          <>
+            <h1 className={`text-center font-semibold text-xl ${getColorClass(index)}`}>Pn numero:{index}</h1>
+            <div className="container mx-auto my-3">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="border p-3 rounded-lg shadow-xl">
+                  <h4 className="text-lg text-center font-semibold">Longitud promedio de la cola:</h4>
+                  <p className={getColorModal(index)}>{item.lq}</p>
+                </div>
+                <div className="border p-3 rounded-lg shadow-xl">
+                  <h4 className="text-lg text-center font-semibold">Longitud promedio del sistema:</h4>
+                  <p className={getColorModal(index)}>{item.ls}</p>
+                </div>
+                <div className="border p-3 rounded-lg shadow-xl">
+                  <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en el sistema:</h4>
+                  <p className={getColorModal(index)}>{item.p}</p>
+                </div>
+                <div className="border p-3 rounded-lg shadow-xl">
+                  <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en la cola:</h4>
+                  <p className={getColorModal(index)}>{item.p0}</p>
+                </div>
+                <div className="border p-4 rounded-lg shadow-xl">
+                  <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en la cola:</h4>
+                  <p className={getColorModal(index)}>{item.wq}</p>
+                </div>
+                <div className="border p-4 rounded-lg shadow-xl">
+                  <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en el sistema:</h4>
+                  <p className={getColorModal(index)}>{item.ws}</p>
+                </div>
+                <div className="border p-4 rounded-lg shadow-xl">
+                  <h4 className="text-lg text-center font-semibold">Costo de Espera por Cliente:</h4>
+                  <p className={getColorModal(index)}>{item.e_cs}</p>
+                </div>
+                <div className="border p-4 rounded-lg shadow-xl">
+                  <h4 className="text-lg text-center font-semibold">Costo de Tiempo de Servicio por Cliente:</h4>
+                  <p className={getColorModal(index)}>{item.e_ct}</p>
+                </div>
+                <div className="border p-4 rounded-lg shadow-xl">
+                  <h4 className="text-lg text-center font-semibold">Costo de Espera del Sistema:</h4>
+                  <p className={getColorModal(index)}>{item.e_cw}</p>
+                </div>
+              </div>
             </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Longitud promedio del sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta[1]?.ls}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta[1]?.p}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta[1]?.p0}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta[1]?.wq}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta[1]?.ws}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Espera por Cliente:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta[1]?.e_cs}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Tiempo de Servicio por Cliente:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta[1]?.e_ct}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Espera del Sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-green-300 rounded-full">{respuesta[1]?.e_cw}</p>
-            </div>
-          </div>
-        </div>
-        <hr /><hr /><hr />
-
-        <div className="container mx-auto my-3">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Longitud promedio de la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-red-300 rounded-full">{respuesta[2]?.lq}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Longitud promedio del sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-red-300 rounded-full">{respuesta[2]?.ls}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-red-300 rounded-full">{respuesta[2]?.p}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-red-300 rounded-full">{respuesta[2]?.p0}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-red-300 rounded-full">{respuesta[2]?.wq}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-red-300 rounded-full">{respuesta[2]?.ws}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Espera por Cliente:</h4>
-              <p className="text-lg text-center font-semibold bg-red-300 rounded-full">{respuesta[2]?.e_cs}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Tiempo de Servicio por Cliente:</h4>
-              <p className="text-lg text-center font-semibold bg-red-300 rounded-full">{respuesta[2]?.e_ct}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Espera del Sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-red-300 rounded-full">{respuesta[2]?.e_cw}</p>
-            </div>
-          </div>
-        </div>
-        <hr /><hr /><hr />
-
-        <div className="container mx-auto my-3">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Longitud promedio de la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-blue-300 rounded-full">{respuesta[3]?.lq}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Longitud promedio del sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-blue-300 rounded-full">{respuesta[3]?.ls}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-blue-300 rounded-full">{respuesta[3]?.p}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-blue-300 rounded-full">{respuesta[3]?.p0}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-blue-300 rounded-full">{respuesta[3]?.wq}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-blue-300 rounded-full">{respuesta[3]?.ws}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Espera por Cliente:</h4>
-              <p className="text-lg text-center font-semibold bg-blue-300 rounded-full">{respuesta[3]?.e_cs}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Tiempo de Servicio por Cliente:</h4>
-              <p className="text-lg text-center font-semibold bg-blue-300 rounded-full">{respuesta[3]?.e_ct}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Espera del Sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-blue-300 rounded-full">{respuesta[3]?.e_cw}</p>
-            </div>
-          </div>
-        </div>
-        <hr /><hr /><hr />
-
-
-        <div className="container mx-auto my-3">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Longitud promedio de la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-yellow-300 rounded-full">{respuesta[4]?.lq}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Longitud promedio del sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-yellow-300 rounded-full">{respuesta[4]?.ls}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-yellow-300 rounded-full">{respuesta[4]?.p}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-yellow-300 rounded-full">{respuesta[4]?.p0}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-yellow-300 rounded-full">{respuesta[4]?.wq}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-yellow-300 rounded-full">{respuesta[4]?.ws}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Espera por Cliente:</h4>
-              <p className="text-lg text-center font-semibold bg-yellow-300 rounded-full">{respuesta[4]?.e_cs}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Tiempo de Servicio por Cliente:</h4>
-              <p className="text-lg text-center font-semibold bg-yellow-300 rounded-full">{respuesta[4]?.e_ct}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Espera del Sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-yellow-300 rounded-full">{respuesta[4]?.e_cw}</p>
-            </div>
-          </div>
-        </div>
-
-        <hr /><hr /><hr />
-
-
-        <div className="container mx-auto my-3">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Longitud promedio de la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-purple-300 rounded-full">{respuesta[5]?.lq}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Longitud promedio del sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-purple-300 rounded-full">{respuesta[5]?.ls}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-purple-300 rounded-full">{respuesta[5]?.p}</p>
-            </div>
-            <div className="border p-3 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Probabilidad de que no haya clientes en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-purple-300 rounded-full">{respuesta[5]?.p0}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en la cola:</h4>
-              <p className="text-lg text-center font-semibold bg-purple-300 rounded-full">{respuesta[5]?.wq}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Tiempo de espera promedio en el sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-purple-300 rounded-full">{respuesta[5]?.ws}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Espera por Cliente:</h4>
-              <p className="text-lg text-center font-semibold bg-purple-300 rounded-full">{respuesta[5]?.e_cs}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Tiempo de Servicio por Cliente:</h4>
-              <p className="text-lg text-center font-semibold bg-purple-300 rounded-full">{respuesta[5]?.e_ct}</p>
-            </div>
-            <div className="border p-4 rounded-lg shadow-xl">
-              <h4 className="text-lg text-center font-semibold">Costo de Espera del Sistema:</h4>
-              <p className="text-lg text-center font-semibold bg-purple-300 rounded-full">{respuesta[5]?.e_cw}</p>
-            </div>
-          </div>
-        </div>
+            <hr /><hr /><hr />
+          </>
+        ))}
 
       </Modal.Body>
     </Modal>
