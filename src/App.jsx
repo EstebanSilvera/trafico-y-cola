@@ -32,40 +32,40 @@ function App() {
     switch (true) {
       case teoriaColas && !teoriaColas2 && !teoriaColas3 && !teoriaColas4:
         if (lamb && miu) {
-          if (lamb != 0 && miu != 0) {
+          if (lamb > 0 && miu > 0) {
             return setModalShow(true);
           } else {
-            return alert("Agregue un numero diferente a 0")
+            return alert("Agregue un numero diferente y mayor a 0")
           }
         } else {
           return alert("Llene los campos requeridos")
         }
       case teoriaColas && teoriaColas2 && !teoriaColas3 && !teoriaColas4:
         if (lamb && miu && servidor) {
-          if (lamb != 0 && miu != 0 && servidor != 0) {
+          if (lamb > 0 && miu > 0 && servidor > 0) {
             return setModalShow2(true);
           } else {
-            return alert("Agregue un numero diferente a 0")
+            return alert("Agregue un numero diferente y mayor a 0")
           }
         } else {
           return alert("Llene los campos requeridos")
         }
       case teoriaColas && teoriaColas2 && teoriaColas3 && !teoriaColas4:
         if (lamb && miu && servidor && costoEspera && costoServidor) {
-          if (lamb != 0 && miu != 0 && servidor != 0 && costoEspera != 0 && costoServidor != 0) {
+          if (lamb > 0 && miu > 0 && servidor > 0 && costoEspera > 0 && costoServidor > 0) {
             return setModalShow3(true);
           } else {
-            return alert("Agregue un numero diferente a 0")
+            return alert("Agregue un numero diferente y mayor a 0")
           }
         } else {
           return alert("Llene los campos requeridos")
         }
       case teoriaColas && !teoriaColas2 && !teoriaColas3 && teoriaColas4:
         if (lamb && miu && colaTamano) {
-          if (lamb != 0 && miu != 0 && colaTamano != 0) {
+          if (lamb > 0 && miu > 0 && colaTamano > 0) {
             return setModalShow4(true);
           } else {
-            return alert("Agregue un numero diferente a 0")
+            return alert("Agregue un numero diferente y mayor a 0")
           }
         } else {
           return alert("Llene los campos requeridos")
