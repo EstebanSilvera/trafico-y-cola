@@ -15,6 +15,8 @@ function App() {
   const [modalShow3, setModalShow3] = useState(false);
   const [modalShow4, setModalShow4] = useState(false);
 
+  const [aparecer, setAparecer] = useState(false);
+
   const [lamb, setLamb] = useState(0);
   const [miu, setMiu] = useState(0);
   const [servidor, setServidor] = useState(0);
@@ -76,16 +78,30 @@ function App() {
     }
   };
 
+  
+    const variable = () =>{
+      const hideTimeout = setTimeout(() => {
+        setAparecer(false);
+      }, 500);
+      return () => {
+        clearTimeout(hideTimeout);
+      };
+    }
+
+  console.log(aparecer)
+
   return (
     <div className="container2" style={{ backgroundImage: `url(${foto})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }} >
 
-      <div className="informacion text-center backdrop-blur">
+      <div className="informacion text-center">
         <button
           onClick={() => {
             setTeoriaColas(true);
             setTeoriaColas2(false);
             setTeoriaColas3(false);
             setTeoriaColas4(false);
+            setAparecer(true)
+            variable()
           }}
           className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 w-[20vh] rounded m-2 duration-700"
         >
@@ -98,6 +114,9 @@ function App() {
             setTeoriaColas2(true);
             setTeoriaColas3(false);
             setTeoriaColas4(false);
+            setAparecer(true)
+            variable()
+
           }}
           className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 w-[20vh] rounded m-2 duration-700"
         >
@@ -110,6 +129,9 @@ function App() {
             setTeoriaColas2(true);
             setTeoriaColas3(true);
             setTeoriaColas4(false);
+            setAparecer(true)
+            variable()
+
           }}
           className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 w-[20vh] rounded m-2 duration-700"
         >
@@ -122,13 +144,16 @@ function App() {
             setTeoriaColas2(false);
             setTeoriaColas3(false);
             setTeoriaColas4(true);
+            setAparecer(true)
+            variable()
+
           }}
           className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 w-[20vh] rounded m-2 duration-700"
         >
           MM1K
         </button>
 
-        <form action="" className="transition duration-100" onSubmit={prueba}>
+        <form action="" className={aparecer ? `aparecer` : ''}  onSubmit={prueba}>
           {teoriaColas ? (
             <>
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
@@ -604,8 +629,6 @@ function MmsCostos(props) {
     }
   };
 
-  console.log(respuesta);
-
   return (
     <Modal
       {...props}
@@ -674,7 +697,7 @@ function MmsCostos(props) {
 
         {respuesta.map((item, index) => (
           <>
-            <h1 className={`text-center font-semibold text-xl ${getColorClass(index)}`}>Pn numero:{index}</h1>
+            <h1 className={`text-center font-semibold text-xl ${getColorClass(index)}`}>Pn numero: {index}</h1>
             <div className="container mx-auto my-3">
               <div className="grid grid-cols-2 gap-4">
                 <div className="border p-3 rounded-lg shadow-xl">
@@ -757,7 +780,6 @@ function Mm1k(props) {
         console.error("Error al enviar la solicitud:", error);
       });
   };
-  console.log(respuesta)
 
   return (
     <Modal

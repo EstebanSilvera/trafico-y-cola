@@ -11,6 +11,21 @@
     padding: 10px;
     border: 2px solid;
     border-radius: 20px;
-    border-color: black;
-    box-shadow: 0 0 20px 5px black;
+    border-color: purple;
+    box-shadow: 0 0 10px 1px purple;
+    background-color: white;
+}
+
+.aparecer {
+    animation: aparecerDerecha2 0.5s ease-out;
+}
+
+@keyframes aparecerDerecha2 {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
